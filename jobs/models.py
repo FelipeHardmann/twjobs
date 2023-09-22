@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
 class JobType(models.TextChoices):
     FULL_TIME = "FULL_TIME", "Full Time"
     PART_TIME = "PART_TIME", "Part Time"
@@ -11,7 +11,7 @@ class JobType(models.TextChoices):
 class JobLevel(models.TextChoices):
     JUNIOR = "JUNIOR", "Junior"
     MIDDLE = "MIDDLE", "Middle"
-    SENIOR = "SENIOR", "Senior" 
+    SENIOR = "SENIOR", "Senior"
 
 
 class Jobs(models.Model):

@@ -11,13 +11,13 @@ class SkillList(APIView):
         skills = Skills.objects.all()
         serializer = SkillSerializer(skills, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
     def post(self, request):
         serializer = SkillSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+
 
 class SkillDetail(APIView):
     def get(self, request, pk):

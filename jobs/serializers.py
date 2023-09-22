@@ -6,31 +6,19 @@ class JobsSerializers(serializers.ModelSerializer):
     class Meta:
         model = Jobs
         exclude = ('is_active',)
-
-    def validate_title(self, value):
-        if len(value) < 10:
-            raise serializers.ValidationError(
-                'Deve ter pelo menos 10 caracteres'
-            )
-        return value
-
-    def validate_salary(self, value):
-        if value < 1000:
-            raise serializers.ValidationError(
-                'O campo deve ser maior do que 1000'
-            )
-        return value
-
-    def validate_description(self, value):
-        if len(value) < 10:
-            raise serializers.ValidationError(
-                'Deve ter pelo menos 10 caracteres'
-            )
-        return value
-
-    def validate_company(self, value):
-        if len(value) < 3:
-            raise serializers.ValidationError(
-                'Deve ter pelo menos 3 caracteres'
-            )
-        return value
+        extra_kwargs = {
+            'title': {'min_length': 10},
+            'salary': {
+                'min_value': 1000
+            },
+            'description': {
+                'min_length': 10,
+                'max_length': 500
+            },
+            'company': {
+                'min_length': 3
+            },
+            'endereco': {
+                'min_length': 3
+            }
+        }
